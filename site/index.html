@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f8f8fb">
+  <title>Doom Emacs в браузере</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./vendor/xterm/xterm.css">
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.mjs"></script>
+</head>
+<body>
+  <aside class="sidebar" aria-label="Виртуальная машина">
+    <div class="brand">
+      <span class="brand-icon" aria-hidden="true">&gt;_</span>
+      <span>Unkernel</span>
+    </div>
+    <section class="machine">
+      <h2>Виртуальная машина</h2>
+      <dl>
+        <div><dt>Система</dt><dd id="machine-system">Alpine Linux</dd></div>
+        <div><dt>Движок</dt><dd>WebAssembly</dd></div>
+        <div><dt>Диск</dt><dd id="machine-disk">Подключается</dd></div>
+      </dl>
+    </section>
+    <div class="machine-actions">
+      <button id="inspect-vm" disabled>Диагностика</button>
+      <button id="restart" hidden>Перезагрузить ВМ</button>
+    </div>
+    <a class="sources" href="./sources.html">Исходники и лицензии</a>
+  </aside>
+  <main>
+    <header class="page-header">
+      <h1>Doom Emacs</h1>
+      <span id="machine-state" class="machine-state" data-state="starting">Запуск ВМ</span>
+    </header>
+    <div id="view-nav"></div>
+    <div class="workspace" id="workspace" data-view="boot">
+      <div class="workspace-bar">
+        <span class="workspace-path"><span class="terminal-icon" aria-hidden="true">&gt;_</span> <span id="workspace-path">/dev/hvc0</span></span>
+        <div class="actions" aria-label="Действия">
+          <button id="keyboard" disabled>Клавиатура</button>
+          <button id="insert" data-session disabled>Вставить файл</button>
+          <button id="download" data-session disabled>Скачать notes.org</button>
+          <button id="save" class="primary" data-session disabled>Сохранить</button>
+          <input id="file" type="file" accept=".org,.txt,.md,text/plain" hidden>
+        </div>
+      </div>
+      <div class="workspace-body">
+        <section id="boot" aria-labelledby="boot-title">
+          <div class="boot-heading">
+            <div>
+              <h2 id="boot-title">Загрузка Alpine Linux</h2>
+              <p id="boot-stage">Запускается виртуальная машина Unkernel.</p>
+            </div>
+            <button id="open-emacs" class="primary" disabled>Открыть Doom Emacs</button>
+          </div>
+          <pre id="boot-log" tabindex="0" aria-label="Вывод консоли Linux"></pre>
+        </section>
+        <div id="terminal" aria-label="Терминал Emacs" hidden></div>
+        <div id="shell" aria-label="Терминал Alpine" hidden></div>
+      </div>
+      <div class="keys" aria-label="Клавиши терминала">
+      <button data-key="insert" data-view="emacs" disabled>Вставка (i)</button>
+      <button data-key="ctrl-x" data-view="emacs" disabled>C-x</button>
+      <button data-key="ctrl-g" data-view="emacs" disabled>C-g</button>
+      <button data-key="meta-x" data-view="emacs" disabled>M-x</button>
+      <button data-key="ctrl-c" data-view="shell" hidden disabled>Ctrl+C</button>
+      <button data-key="ctrl-d" data-view="shell" hidden disabled>Ctrl+D</button>
+      <button data-key="enter" disabled>Enter</button>
+      <button data-key="escape" disabled>Esc</button>
+      <button data-key="tab" disabled>Tab</button>
+      <button data-key="up" aria-label="Вверх" disabled>↑</button>
+      <button data-key="down" aria-label="Вниз" disabled>↓</button>
+      <button data-key="left" aria-label="Влево" disabled>←</button>
+      <button data-key="right" aria-label="Вправо" disabled>→</button>
+      </div>
+    </div>
+    <p id="status" class="status-line" role="status">Загрузка виртуальной машины…</p>
+  </main>
+  <dialog id="vm-dialog" aria-labelledby="vm-title">
+    <div class="dialog-heading">
+      <h2 id="vm-title">Диагностика Alpine Linux</h2>
+      <form method="dialog"><button>Закрыть</button></form>
+    </div>
+    <pre id="vm-output" tabindex="0" aria-live="polite"></pre>
+    <details>
+      <summary>Вывод при загрузке Linux</summary>
+      <pre id="vm-boot-log" tabindex="0"></pre>
+    </details>
+  </dialog>
+  <noscript>Для запуска Emacs включите JavaScript.</noscript>
+</body>
+</html>

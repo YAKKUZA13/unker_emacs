@@ -20,12 +20,17 @@ createServer(async (request, response) => {
       return;
     }
     if (!pathname.startsWith(base)) throw new Error('Outside the preview path');
-    const file = resolve(root, pathname.slice(base.length) || 'index.html');
+    const relativePath = pathname.slice(base.length);
+    const file = resolve(root, pathname.endsWith('/') ? `${relativePath}index.html` : relativePath);
     if (!file.startsWith(root + sep)) throw new Error('Outside the build directory');
     const info = await stat(file);
     if (!info.isFile()) throw new Error('Not a file');
     const { size } = info;
     const headers = { 'Content-Type': mime[extname(file)] ?? 'application/octet-stream', 'Accept-Ranges': 'bytes' };
+    if (relativePath.startsWith('local-graphics/')) {
+      headers['Cross-Origin-Opener-Policy'] = 'same-origin';
+      headers['Cross-Origin-Embedder-Policy'] = 'require-corp';
+    }
     let start = 0;
     let end = size - 1;
     if (request.headers.range) {

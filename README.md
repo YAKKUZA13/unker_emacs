@@ -39,3 +39,17 @@ npm run preview
 Откройте [локальный адрес](http://127.0.0.1:4173/unkernel-emacs/) в браузере с JSPI. Путь `unkernel-emacs/` имитирует публикацию проекта в подпапке GitHub Pages.
 
 После изменения интерфейса `npm run build:ui` обновляет статические файлы в `dist/` с уже собранным образом Alpine.
+
+## Локальный тест Wayland и WebGPU
+
+Соберите обычный образ Doom, затем соберите графический образ и запустите локальный сервер.
+
+```sh
+npm run build
+npm run build:graphics
+npm run preview
+```
+
+Откройте [графический режим](http://127.0.0.1:4173/unkernel-emacs/local-graphics/) в Chrome или Edge с JSPI и WebGPU. **Открыть Doom Emacs** запускает окно Wayland. **Запустить vkcube** проверяет гостевой Vulkan через WebGPU. В диагностике поддерживаемого браузера будет `kwvk (WebGPU)`.
+
+Графический режим использует отдельный Debian и временный диск. Заметки в нём живут до выключения ВМ или обновления страницы. Сборка GitHub Pages не запускает `build:graphics`.

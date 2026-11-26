@@ -8,6 +8,7 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "build:ui": "node scripts/build-site.mjs",
+    "build:graphics": "node scripts/build-graphics.mjs",
     "preview": "node scripts/preview.mjs"
   },
   "dependencies": {
@@ -17,6 +18,8 @@
     "@xterm/xterm": "6.0.0",
     "esbuild": "0.28.2",
     "unkernel": "https://github.com/pithings/unkernel/releases/download/v0.2.0-261123-8f039c5/unkernel.tgz",
-    "vue": "3.5.46"
+    "unkernel-graphics": "https://github.com/pithings/unkernel/releases/download/v0.2.0-261126-fd204d3/unkernel.tgz",
+    "vue": "3.5.46",
+    "wland": "0.1.0-261125-0023837"
   }
 }

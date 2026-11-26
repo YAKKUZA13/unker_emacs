@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./graphics.css">
+  <script type="module" src="./graphics.mjs"></script>
+  <title>Linux · WebGPU</title>
+</head>
+<body>
+  <header>
+    <h1>Linux · WebGPU</h1>
+    <div class="actions">
+      <button id="emacs" disabled>Открыть Doom Emacs</button>
+      <button id="cube" disabled>Запустить vkcube</button>
+      <button id="stop" disabled>Выключить ВМ</button>
+      <a href="../">Терминальная версия</a>
+    </div>
+  </header>
+  <main id="desktop" aria-label="Окна Linux Wayland"></main>
+  <footer>
+    <p id="status" role="status">Проверяем возможности браузера…</p>
+    <details><summary>Диагностика Vulkan</summary><pre id="diagnostics">Ожидание запуска Linux.</pre></details>
+  </footer>
+</body>
+</html>

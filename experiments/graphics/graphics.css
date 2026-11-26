@@ -1,0 +1,16 @@
+:root { color-scheme: dark; color: #f6f3fe; background: #161421; font: 1rem/1.4 system-ui, sans-serif; }
+* { box-sizing: border-box; }
+body { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; min-height: 0; height: 100dvh; margin: 0; padding: .9rem; gap: .75rem; }
+header, .actions { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; }
+header { justify-content: space-between; }
+h1 { margin: 0; font-size: 1.35rem; }
+button { font: inherit; color: inherit; min-height: 2.75rem; padding: .35rem .65rem; border: 1px solid #57516e; border-radius: .5rem; background: #29253a; cursor: pointer; }
+button:not(:disabled):hover { background: #3b3153; }
+button:disabled { color: #aba6b9; cursor: default; }
+button:focus-visible, a:focus-visible { outline: 2px solid #c2a3ff; outline-offset: 3px; }
+a { color: #cfbaff; }
+#desktop { position: relative; min-width: 0; min-height: 0; overflow: hidden; border: 1px solid #4b4560; border-radius: .65rem; background: radial-gradient(ellipse at 18% 80%, #303056, transparent 65%), #201c2f; }
+footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem; }
+footer p { margin: 0; }
+summary { cursor: pointer; }
+pre { margin: .5rem 0 0; max-height: 25vh; overflow: auto; font: .875rem/1.4 ui-monospace, monospace; white-space: pre-wrap; }
